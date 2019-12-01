@@ -1,7 +1,7 @@
 ﻿open System.IO
 
 let LoadData =
-    [for value in File.ReadAllLines "input.txt" -> value |> int]
+    File.ReadAllLines "input.txt" |> Array.map int
 
 let rec CalculateFuelForModule input =
     let check x =
@@ -10,10 +10,10 @@ let rec CalculateFuelForModule input =
     input/3 - 2 |> check
 
 let CalculateFuelForAllModules input =
-    [for inputValue in input -> inputValue |> CalculateFuelForModule]
+    input |> Array.map CalculateFuelForModule
 
 let ReduceResult input =
-    List.sum input
+    Array.sum input
 
 [<EntryPoint>]
 let main argv =
